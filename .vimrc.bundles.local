@@ -1,0 +1,8 @@
+Plugin 'Raimondi/delimitMate'
+Plugin 'juneedahamed/vc.vim'
+ let g:vc_allow_leader_mappings = 1
+ let g:vc_browse_cache_all = 1
+ let g:vc_branch_url = 'svn+ssh://mr-bohr/users'
+Plugin 'dkprice/vim-easygrep'
+Plugin 'mbbill/echofunc'
+Plugin 'dansomething/vim-eclim'

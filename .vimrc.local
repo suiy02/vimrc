@@ -1,0 +1,15 @@
+source ~/.vim/mymenu.vim
+if !has("gui_running")
+    :source $VIMRUNTIME/menu.vim 
+    :set wildmenu                        
+    :set cpoptions-=<
+    :set wildcharm=<C-Z>
+    :map <F4> :emenu <C-Z>
+else
+    :set mousemodel=popup
+    :set guioptions+=T
+endif
+
+let g:UltiSnipsExpandTrigger="<c-j>"
+let g:ycm_global_ycm_extra_conf = '~/.vim/.ycm_extra_conf.py'
+set nospell

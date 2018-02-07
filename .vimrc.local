@@ -13,3 +13,40 @@ endif
 let g:UltiSnipsExpandTrigger="<c-j>"
 let g:ycm_global_ycm_extra_conf = '~/.vim/.ycm_extra_conf.py'
 set nospell
+
+"quote current word
+nmap <Leader>' ysiw'W
+nmap <Leader>" ysiw"W
+nmap <Leader>( ysiw)W
+nmap <Leader>{ ysiw}W
+nmap <Leader>[ ysiw]W
+set diffopt+=iwhite
+set diffexpr=DiffW()
+function DiffW()
+  let opt = ""
+   if &diffopt =~ "icase"
+     let opt = opt . "-i "
+   endif
+
+   if &diffopt =~ "iwhite"
+     let opt = opt . "-w -B " " swapped vim's -b with -w -B ; -w ignore all whites, -B ignore empty lines.
+   endif
+
+   silent execute "!diff -a --binary " . opt .
+     \ v:fname_in . " " . v:fname_new .  " > " . v:fname_out
+endfunction
+
+" Ctrl+s to save 
+noremap <silent> <C-S>          :update<CR>
+vnoremap <silent> <C-S>         <C-C>:update<CR>
+inoremap <silent> <C-S>         <C-O>:update<CR>
+
+if has('gui_running')
+    let g:airline_theme = 'badwolf'
+else
+    let g:airline_theme = 'term'
+endif
+nmap [w  <C-w>W
+nmap ]w  <C-w>w
+nmap [b  :bpre<cr>
+nmap ]b  :bnext<cr>

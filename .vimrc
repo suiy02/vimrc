@@ -57,7 +57,7 @@
           set runtimepath=$HOME/.vim,$VIM/vimfiles,$VIMRUNTIME,$VIM/vimfiles/after,$HOME/.vim/after
         endif
     " }
-    
+
     " Arrow Key Fix {
         " https://github.com/spf13/spf13-vim/issues/780
         if &term[:4] == "xterm" || &term[:5] == 'screen' || &term[:3] == 'rxvt'
@@ -178,7 +178,12 @@
 " Vim UI {
 
     if !exists('g:override_spf13_bundles') && filereadable(expand("~/.vim/bundle/vim-colors-solarized/colors/solarized.vim"))
-        let g:solarized_termcolors=256
+        if has('gui_running')
+            let g:solarized_termcolors=256
+        else
+            let g:solarized_termcolors=128
+        endif
+
         let g:solarized_termtrans=1
         let g:solarized_contrast="normal"
         let g:solarized_visibility="normal"
@@ -1056,9 +1061,46 @@
             endif
             if !exists('g:airline_powerline_fonts')
                 " Use the default set of separators with a few customizations
-                let g:airline_left_sep='›'  " Slightly fancier than '>'
-                let g:airline_right_sep='‹' " Slightly fancier than '<'
+                "let g:airline_left_sep='›'  " Slightly fancier than '>'
+                "let g:airline_right_sep='‹' " Slightly fancier than '<'
             endif
+
+            if !exists('g:airline_symbols')
+                let g:airline_symbols = {}
+            endif
+
+            " unicode symbols
+            let g:airline_left_sep = '»'
+            let g:airline_left_sep = '▶'
+            let g:airline_right_sep = '«'
+            let g:airline_right_sep = '◀'
+            let g:airline_symbols.crypt = '🔒'
+            let g:airline_symbols.linenr = '☰'
+            let g:airline_symbols.linenr = '␊'
+            let g:airline_symbols.linenr = '␤'
+            let g:airline_symbols.linenr = '¶'
+            let g:airline_symbols.maxlinenr = ''
+            let g:airline_symbols.maxlinenr = '㏑'
+            let g:airline_symbols.branch = '⎇'
+            let g:airline_symbols.paste = 'ρ'
+            let g:airline_symbols.paste = 'Þ'
+            let g:airline_symbols.paste = '∥'
+            let g:airline_symbols.spell = 'Ꞩ'
+            let g:airline_symbols.notexists = '∄'
+            let g:airline_symbols.whitespace = 'Ξ'
+
+            " powerline symbols
+            let g:airline_left_sep = ''
+            let g:airline_left_alt_sep = ''
+            let g:airline_right_sep = ''
+            let g:airline_right_alt_sep = ''
+            let g:airline_symbols.branch = ''
+            let g:airline_symbols.readonly = ''
+            let g:airline_symbols.linenr = '☰'
+            let g:airline_symbols.maxlinenr = ''
+
+
+
         endif
     " }
 
@@ -1197,23 +1239,23 @@
         endfor
         return s:is_fork
     endfunction
-     
+
     function! s:ExpandFilenameAndExecute(command, file)
         execute a:command . " " . expand(a:file, ":p")
     endfunction
-     
+
     function! s:EditSpf13Config()
         call <SID>ExpandFilenameAndExecute("tabedit", "~/.vimrc")
         call <SID>ExpandFilenameAndExecute("vsplit", "~/.vimrc.before")
         call <SID>ExpandFilenameAndExecute("vsplit", "~/.vimrc.bundles")
-     
+
         execute bufwinnr(".vimrc") . "wincmd w"
         call <SID>ExpandFilenameAndExecute("split", "~/.vimrc.local")
         wincmd l
         call <SID>ExpandFilenameAndExecute("split", "~/.vimrc.before.local")
         wincmd l
         call <SID>ExpandFilenameAndExecute("split", "~/.vimrc.bundles.local")
-     
+
         if <SID>IsSpf13Fork()
             execute bufwinnr(".vimrc") . "wincmd w"
             call <SID>ExpandFilenameAndExecute("split", "~/.vimrc.fork")
@@ -1222,10 +1264,10 @@
             wincmd l
             call <SID>ExpandFilenameAndExecute("split", "~/.vimrc.bundles.fork")
         endif
-     
+
         execute bufwinnr(".vimrc.local") . "wincmd w"
     endfunction
-     
+
     execute "noremap " . s:spf13_edit_config_mapping " :call <SID>EditSpf13Config()<CR>"
     execute "noremap " . s:spf13_apply_config_mapping . " :source ~/.vimrc<CR>"
 " }

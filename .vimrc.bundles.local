@@ -5,4 +5,61 @@ Plugin 'juneedahamed/vc.vim'
  let g:vc_branch_url = 'svn+ssh://mr-bohr/users'
 Plugin 'dkprice/vim-easygrep'
 Plugin 'mbbill/echofunc'
-Plugin 'dansomething/vim-eclim'
+"Plugin 'dansomething/vim-eclim'
+Plugin 'ervandew/supertab'
+Plugin 'garbas/vim-snipmate'
+Plugin 'honza/vim-snippets'
+Plugin 'scrooloose/nerdcommenter'
+Plugin 'MattesGroeger/vim-bookmarks'
+
+"fastunite
+Plugin 'Shougo/vimproc.vim'
+Plugin 'Shougo/unite.vim'
+Plugin 'rstacruz/vim-fastunite'
+
+Plugin 'Shougo/neomru.vim'
+Plugin 'Shougo/unite-outline'
+Plugin 'tsukkee/unite-tag'
+map <C-p> [unite]p
+nmap <F5> [unite]]
+
+Plugin 'junegunn/fzf.vim'
+    set rtp+=~/.fzf
+    imap <c-x><c-l> <plug>(fzf-complete-line)
+    nmap <F6> :Commands<cr>
+    nmap <F7> :Maps<cr>
+    " Customize fzf colors to match your color scheme
+    let g:fzf_colors =
+    \ { 'fg':      ['fg', 'Normal'],
+      \ 'bg':      ['bg', 'Normal'],
+      \ 'hl':      ['fg', 'CursorLineNr'],
+      \ 'fg+':     ['fg', 'CursorLine', 'CursorColumn', 'Normal'],
+      \ 'bg+':     ['bg', 'CursorLine', 'CursorColumn'],
+      \ 'hl+':     ['fg', 'Statement'],
+      \ 'info':    ['fg', 'PreProc'],
+      \ 'border':  ['fg', 'Ignore'],
+      \ 'prompt':  ['fg', 'Conditional'],
+      \ 'pointer': ['fg', 'Exception'],
+      \ 'marker':  ['fg', 'Keyword'],
+      \ 'spinner': ['fg', 'Label'],
+      \ 'header':  ['fg', 'Comment'] }
+Plugin 'drmikehenry/vim-fontsize'
+Plugin 'yuttie/comfortable-motion.vim'
+    "let g:comfortable_motion_scroll_down_key = "j"
+    "let g:comfortable_motion_scroll_up_key = "k"
+    let g:comfortable_motion_no_default_key_mappings = 1
+    let g:comfortable_motion_interval = 16
+    let g:comfortable_motion_air_drag = 5
+    let g:comfortable_motion_friction = 10
+    set lazyredraw
+    noremap <silent> <ScrollWheelDown> :call comfortable_motion#flick(40)<CR>
+    noremap <silent> <ScrollWheelUp>   :call comfortable_motion#flick(-40)<CR>
+    nnoremap <silent> <PageUp> :call comfortable_motion#flick(100)<CR>
+    nnoremap <silent> <PageDown> :call comfortable_motion#flick(-100)<CR>
+    nnoremap <silent> <C-f> :call comfortable_motion#flick(200)<CR>
+    nnoremap <silent> <C-b> :call comfortable_motion#flick(-200)<CR>
+UnBundle 'kana/vim-textobj-user'
+UnBundle 'gcmt/wildfire.vim'
+UnBundle 'kana/vim-textobj-indent'
+UnBundle 'mattn/webapi-vim'
+UnBundle 'tacahiroy/ctrlp-funky'

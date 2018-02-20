@@ -109,7 +109,7 @@
          "   Bundle 'rhysd/conflict-marker.vim'
             Bundle 'jiangmiao/auto-pairs'
             Bundle 'ctrlpvim/ctrlp.vim'
-            Bundle 'tacahiroy/ctrlp-funky'
+            "Bundle 'tacahiroy/ctrlp-funky'
             Bundle 'terryma/vim-multiple-cursors'
          "   Bundle 'vim-scripts/sessionman.vim'
          "   Bundle 'matchit.zip'
@@ -124,19 +124,20 @@
             Bundle 'powerline/fonts'
             Bundle 'bling/vim-bufferline'
             Bundle 'easymotion/vim-easymotion'
-            Bundle 'jistr/vim-nerdtree-tabs'
+            "Bundle 'jistr/vim-nerdtree-tabs'
          "   Bundle 'flazz/vim-colorschemes'
-            Bundle 'mbbill/undotree'
+            "Bundle 'mbbill/undotree'
             Bundle 'nathanaelkane/vim-indent-guides'
             if !exists('g:spf13_no_views')
                 Bundle 'vim-scripts/restore_view.vim'
             endif
-            Bundle 'mhinz/vim-signify'
-            Bundle 'tpope/vim-abolish.git'
-            Bundle 'osyo-manga/vim-over'
-            Bundle 'kana/vim-textobj-user'
-            Bundle 'kana/vim-textobj-indent'
-            Bundle 'gcmt/wildfire.vim'
+             Bundle 'mhinz/vim-signify'
+                let g:signify_disable_by_default = 1
+            "Bundle 'tpope/vim-abolish.git'
+            "Bundle 'osyo-manga/vim-over'
+            "Bundle 'kana/vim-textobj-user'
+            "Bundle 'kana/vim-textobj-indent'
+            "Bundle 'gcmt/wildfire.vim'
         endif
     " }
 
@@ -154,9 +155,9 @@
             " Pick one of the checksyntax, jslint, or syntastic
             Bundle 'scrooloose/syntastic'
          "   Bundle 'tpope/vim-fugitive'
-            Bundle 'mattn/webapi-vim'
+            "Bundle 'mattn/webapi-vim'
          "   Bundle 'mattn/gist-vim'
-         "   Bundle 'scrooloose/nerdcommenter'
+            Bundle 'scrooloose/nerdcommenter'
             Bundle 'tpope/vim-commentary'
             Bundle 'godlygeek/tabular'
             Bundle 'luochen1990/rainbow'
@@ -168,7 +169,8 @@
 
     " Snippets & AutoComplete {
         if count(g:spf13_bundle_groups, 'snipmate')
-            Bundle 'garbas/vim-snipmate'
+            "Bundle 'garbas/vim-snipmate'
+            Bundle 'SirVer/ultisnips'
             Bundle 'honza/vim-snippets'
             " Source support_function.vim to support vim-snippets.
             if filereadable(expand("~/.vim/bundle/vim-snippets/snippets/support_functions.vim"))
@@ -188,8 +190,38 @@
             Bundle 'Shougo/neosnippet'
             Bundle 'Shougo/neosnippet-snippets'
             Bundle 'honza/vim-snippets'
+        elseif count(g:spf13_bundle_groups, 'deoplete')
+
+            if has('nvim')
+                Plugin 'Shougo/deoplete.nvim'
+            else
+                Plugin 'Shougo/deoplete.nvim'
+                Plugin 'roxma/nvim-yarp'
+                Plugin 'roxma/vim-hug-neovim-rpc'
+            endif
+            Bundle 'SirVer/ultisnips'
+            Bundle 'honza/vim-snippets'
+            let g:deoplete#enable_at_startup = 1
+            let g:deoplete#disable_auto_complete = 0
+            "inoremap <expr> <Tab> pumvisible() ? "\<C-n>" : deoplete#mappings#manual_complete()
+            "inoremap <expr> <C-n> deoplete#mappings#manual_complete()
+            "inoremap <expr> <S-Tab> pumvisible() ? "\<C-p>" : "\<S-Tab>"
+            "let g:deoplete#complete_method = 'omnifunc'
+            "let g:SuperTabDefaultCompletionType = "context"
+            "let g:deoplete#complete_method = 'completefunc'
+            let g:deoplete#auto_complete_start_length = 4
+            let g:deoplete#max_list = 10
+            "if !exists('g:deoplete#omni#input_patterns')
+                "let g:deoplete#omni#input_patterns = {}
+            "endif
+            autocmd InsertLeave,CompleteDone * if pumvisible() == 0 | pclose | endif
+
+            call deoplete#custom#set('ultisnips', 'matchers', ['matcher_fuzzy'])
+            " deoplete tab-complete
+            inoremap <expr><tab> pumvisible() ? "\<c-n>" : "\<tab>"
+
         endif
-    " }
+        " }
 
     " PHP {
         if count(g:spf13_bundle_groups, 'php')
@@ -299,13 +331,75 @@
 " }
 
 " Use fork bundles config if available {
-    if filereadable(expand("~/.vimrc.bundles.fork"))
-        source ~/.vimrc.bundles.fork
-    endif
+    "if filereadable(expand("~/.vimrc.bundles.fork"))
+        "source ~/.vimrc.bundles.fork
+    "endif
 " }
 
 " Use local bundles config if available {
-    if filereadable(expand("~/.vimrc.bundles.local"))
-        source ~/.vimrc.bundles.local
-    endif
+    "if filereadable(expand("~/.vimrc.bundles.local"))
+        "source ~/.vimrc.bundles.local
+    "endif
 " }
+
+
+" My Configs
+Plugin 'Raimondi/delimitMate'
+Plugin 'juneedahamed/vc.vim'
+ let g:vc_allow_leader_mappings = 1
+ let g:vc_browse_cache_all = 1
+ let g:vc_branch_url = 'svn+ssh://mr-bohr/users'
+"Plugin 'dkprice/vim-easygrep'
+Plugin 'mbbill/echofunc'
+"Plugin 'dansomething/vim-eclim'
+Plugin 'ervandew/supertab'
+Plugin 'MattesGroeger/vim-bookmarks'
+
+"fastunite
+Plugin 'Shougo/vimproc.vim'
+Plugin 'Shougo/unite.vim'
+Plugin 'rstacruz/vim-fastunite'
+
+Plugin 'Shougo/neomru.vim'
+Plugin 'Shougo/unite-outline'
+Plugin 'tsukkee/unite-tag'
+map <C-p> [unite]p
+nmap <F5> [unite]]
+
+Plugin 'junegunn/fzf.vim'
+    set rtp+=~/.fzf
+    imap <c-x><c-l> <plug>(fzf-complete-line)
+    nmap <F6> :Commands<cr>
+    nmap <F7> :Maps<cr>
+    " Customize fzf colors to match your color scheme
+    let g:fzf_colors =
+    \ { 'fg':      ['fg', 'Normal'],
+      \ 'bg':      ['bg', 'Normal'],
+      \ 'hl':      ['fg', 'CursorLineNr'],
+      \ 'fg+':     ['fg', 'CursorLine', 'CursorColumn', 'Normal'],
+      \ 'bg+':     ['bg', 'CursorLine', 'CursorColumn'],
+      \ 'hl+':     ['fg', 'Statement'],
+      \ 'info':    ['fg', 'PreProc'],
+      \ 'border':  ['fg', 'Ignore'],
+      \ 'prompt':  ['fg', 'Conditional'],
+      \ 'pointer': ['fg', 'Exception'],
+      \ 'marker':  ['fg', 'Keyword'],
+      \ 'spinner': ['fg', 'Label'],
+      \ 'header':  ['fg', 'Comment'] }
+
+Plugin 'drmikehenry/vim-fontsize'
+
+Plugin 'yuttie/comfortable-motion.vim'
+    let g:comfortable_motion_no_default_key_mappings = 1
+    let g:comfortable_motion_interval = 16
+    let g:comfortable_motion_air_drag = 5
+    let g:comfortable_motion_friction = 10
+    set lazyredraw
+    noremap <silent> <ScrollWheelDown> :call comfortable_motion#flick(40)<CR>
+    noremap <silent> <ScrollWheelUp>   :call comfortable_motion#flick(-40)<CR>
+    nnoremap <silent> <PageUp> :call comfortable_motion#flick(100)<CR>
+    nnoremap <silent> <PageDown> :call comfortable_motion#flick(-100)<CR>
+    nnoremap <silent> <C-f> :call comfortable_motion#flick(200)<CR>
+    nnoremap <silent> <C-b> :call comfortable_motion#flick(-200)<CR>
+
+Plugin 'mhinz/vim-startify'

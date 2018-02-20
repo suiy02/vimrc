@@ -1,5 +1,5 @@
 " Modeline and Notes {
-" vim: set sw=4 ts=4 sts=4 et tw=78 foldmarker={,} foldlevel=0 foldmethod=marker spell:
+" vim: set sw=4 ts=4 sts=4 et tw=78 foldmarker={,} foldlevel=9 foldmethod=marker spell:
 "
 "                    __ _ _____              _
 "         ___ _ __  / _/ |___ /      __   __(_)_ __ ___
@@ -126,7 +126,7 @@
     set viewoptions=folds,options,cursor,unix,slash " Better Unix / Windows compatibility
     set virtualedit=onemore             " Allow for cursor beyond last character
     set history=1000                    " Store a ton of history (default is 20)
-    set spell                           " Spell checking on
+    "set spell                           " Spell checking on
     set hidden                          " Allow buffer switching without saving
     set iskeyword-=.                    " '.' is an end of word designator
     set iskeyword-=#                    " '#' is an end of word designator
@@ -193,7 +193,7 @@
     set tabpagemax=15               " Only show 15 tabs
     set showmode                    " Display the current mode
 
-    set cursorline                  " Highlight current line
+    "set cursorline                  " Highlight current line
 
     highlight clear SignColumn      " SignColumn should match background
     highlight clear LineNr          " Current line number row will have same background color in relative mode
@@ -213,7 +213,7 @@
         set statusline=%<%f\                     " Filename
         set statusline+=%w%h%m%r                 " Options
         if !exists('g:override_spf13_bundles')
-            set statusline+=%{fugitive#statusline()} " Git Hotness
+            "set statusline+=%{fugitive#statusline()} " Git Hotness
         endif
         set statusline+=\ [%{&ff}/%Y]            " Filetype
         set statusline+=\ [%{getcwd()}]          " Current dir
@@ -222,7 +222,7 @@
 
     set backspace=indent,eol,start  " Backspace for dummies
     set linespace=0                 " No extra spaces between rows
-    set number                      " Line numbers on
+    "set number                      " Line numbers on
     set showmatch                   " Show matching brackets/parenthesis
     set incsearch                   " Find as you type search
     set hlsearch                    " Highlight search terms
@@ -234,7 +234,7 @@
     set whichwrap=b,s,h,l,<,>,[,]   " Backspace and cursor keys wrap too
     set scrolljump=5                " Lines to scroll when cursor leaves screen
     set scrolloff=3                 " Minimum lines to keep above and below cursor
-    set foldenable                  " Auto fold code
+    "set foldenable                  " Auto fold code
     set list
     set listchars=tab:›\ ,trail:•,extends:#,nbsp:. " Highlight problematic whitespace
 
@@ -721,6 +721,11 @@
             " enable completion from tags
             let g:ycm_collect_identifiers_from_tags_files = 1
 
+
+            let g:ycm_min_num_of_chars_for_completion = 4
+            let g:ycm_max_num_candidates = 10
+            let g:ycm_key_list_select_completion = ['<TAB>', '<Down>','<Enter>']
+
             " remap Ultisnips for compatibility for YCM
             let g:UltiSnipsExpandTrigger = '<C-j>'
             let g:UltiSnipsJumpForwardTrigger = '<C-j>'
@@ -1099,11 +1104,31 @@
             let g:airline_symbols.linenr = '☰'
             let g:airline_symbols.maxlinenr = ''
 
-
-
+            "let g:airline_extensions = ['bufferline','tabline','tagbar']
+            let g:airline_extensions = ['bufferline','tabline']
+            let g:airline_detect_spell=0
+            let g:airline_detect_spelllang=0
+            let g:airline_highlighting_cache = 1
+            let g:airline#extensions#disable_rtp_load = 1
+            let g:airline#extensions#bufferline#enabled = 1
+            let g:airline#extensions#tabline#enabled = 1
+            let g:airline_inactive_collapse=0
+            "let g:airline_section_c = '%t'
+            let g:airline_section_c = '%{strftime("%m/%d|%I:%M%p")} %t'
+            let g:airline#extensions#tabline#buffer_idx_mode = 1
+            nmap <leader>1 <Plug>AirlineSelectTab1
+            nmap <leader>2 <Plug>AirlineSelectTab2
+            nmap <leader>3 <Plug>AirlineSelectTab3
+            nmap <leader>4 <Plug>AirlineSelectTab4
+            nmap <leader>5 <Plug>AirlineSelectTab5
+            nmap <leader>6 <Plug>AirlineSelectTab6
+            nmap <leader>7 <Plug>AirlineSelectTab7
+            nmap <leader>8 <Plug>AirlineSelectTab8
+            nmap <leader>9 <Plug>AirlineSelectTab9
+            nmap <leader>- <Plug>AirlineSelectPrevTab
+            nmap <leader>+ <Plug>AirlineSelectNextTab
         endif
     " }
-
 
 
 " }
@@ -1291,3 +1316,4 @@
         endif
     endif
 " }
+

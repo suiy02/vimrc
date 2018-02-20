@@ -1,4 +1,6 @@
 source ~/.vim/mymenu.vim
+
+" <F4>: open menu in term 
 if !has("gui_running")
     :source $VIMRUNTIME/menu.vim 
     :set wildmenu                        
@@ -12,17 +14,18 @@ endif
 
 let g:UltiSnipsExpandTrigger="<c-j>"
 let g:ycm_global_ycm_extra_conf = '~/.vim/.ycm_extra_conf.py'
-set nospell
 
-"quote current word
+" Quote current word
 nmap <Leader>' ysiw'W
 nmap <Leader>" ysiw"W
 nmap <Leader>( ysiw)W
 nmap <Leader>{ ysiw}W
 nmap <Leader>[ ysiw]W
+
+"ignore all whites and empty lines in diff mode 
 set diffopt+=iwhite
 set diffexpr=DiffW()
-function DiffW()
+function! DiffW()
   let opt = ""
    if &diffopt =~ "icase"
      let opt = opt . "-i "
@@ -36,17 +39,43 @@ function DiffW()
      \ v:fname_in . " " . v:fname_new .  " > " . v:fname_out
 endfunction
 
-" Ctrl+s to save 
+" Ctrl+s to save
 noremap <silent> <C-S>          :update<CR>
 vnoremap <silent> <C-S>         <C-C>:update<CR>
 inoremap <silent> <C-S>         <C-O>:update<CR>
 
+" Airline theme
 if has('gui_running')
     let g:airline_theme = 'badwolf'
 else
     let g:airline_theme = 'term'
 endif
+
+" Navigate window and buffers using ] and [
 nmap [w  <C-w>W
 nmap ]w  <C-w>w
 nmap [b  :bpre<cr>
 nmap ]b  :bnext<cr>
+
+
+" ESC to normal in terminal mode
+if exists(':tnoremap')
+    tnoremap <Esc> <C-\><C-n>
+endif
+
+" Click to highlight all occurrences
+nnoremap <silent> <LeftMouse> <LeftMouse>:let @/='\V\<'.escape(expand('<cword>'), '\').'\>'<cr>:set hls<cr>
+inoremap <silent> <LeftMouse> <LeftMouse><c-o>:let @/='\V\<'.escape(expand('<cword>'), '\').'\>'<cr><c-o>:set hls<cr>
+
+" <F7>: grep current word form current buffer
+" <F8>: grep current word form current dir
+nnoremap <F7> :Unite grep:%:-iw:<c-r><c-w><cr>
+inoremap <F7> <c-o>:Unite grep:%:-iw:<c-r><c-w><cr>
+nnoremap <F8> :Unite grep:.:-iw:<c-r><c-w><cr>
+inoremap <F8> <c-o>:Unite grep:.:-iw:<c-r><c-w><cr>
+
+" <c-v> paste from clipboard
+inoremap <c-v> <c-o>"+p
+set nocursorline
+set nospell
+set nonumber

@@ -3,12 +3,12 @@ Plugin 'juneedahamed/vc.vim'
  let g:vc_allow_leader_mappings = 1
  let g:vc_browse_cache_all = 1
  let g:vc_branch_url = 'svn+ssh://mr-bohr/users'
-Plugin 'dkprice/vim-easygrep'
+"Plugin 'dkprice/vim-easygrep'
 Plugin 'mbbill/echofunc'
 "Plugin 'dansomething/vim-eclim'
 Plugin 'ervandew/supertab'
-Plugin 'garbas/vim-snipmate'
-Plugin 'honza/vim-snippets'
+"Plugin 'garbas/vim-snipmate'
+"Plugin 'honza/vim-snippets'
 Plugin 'scrooloose/nerdcommenter'
 Plugin 'MattesGroeger/vim-bookmarks'
 
@@ -45,8 +45,6 @@ Plugin 'junegunn/fzf.vim'
       \ 'header':  ['fg', 'Comment'] }
 Plugin 'drmikehenry/vim-fontsize'
 Plugin 'yuttie/comfortable-motion.vim'
-    "let g:comfortable_motion_scroll_down_key = "j"
-    "let g:comfortable_motion_scroll_up_key = "k"
     let g:comfortable_motion_no_default_key_mappings = 1
     let g:comfortable_motion_interval = 16
     let g:comfortable_motion_air_drag = 5
@@ -58,8 +56,34 @@ Plugin 'yuttie/comfortable-motion.vim'
     nnoremap <silent> <PageDown> :call comfortable_motion#flick(-100)<CR>
     nnoremap <silent> <C-f> :call comfortable_motion#flick(200)<CR>
     nnoremap <silent> <C-b> :call comfortable_motion#flick(-200)<CR>
+Plugin 'mhinz/vim-startify'
+
+
+"if has('nvim')
+  "Plugin 'Shougo/deoplete.nvim'
+"else
+  "Plugin 'Shougo/deoplete.nvim'
+  "Plugin 'roxma/nvim-yarp'
+  "Plugin 'roxma/vim-hug-neovim-rpc'
+"endif
+    "let g:deoplete#enable_at_startup = 1
+    ""let g:deoplete#disable_auto_complete = 1
+    ""inoremap <expr> <Tab> pumvisible() ? "\<C-n>" : deoplete#mappings#manual_complete()
+    "inoremap <expr> <C-n> deoplete#mappings#manual_complete()
+    ""inoremap <expr> <S-Tab> pumvisible() ? "\<C-p>" : "\<S-Tab>"
+    ""let g:deoplete#complete_method = 'omnifunc'
+    ""let g:SuperTabDefaultCompletionType = "context"
+    ""let g:deoplete#complete_method = 'completefunc'
+    "let g:deoplete#auto_complete_start_length = 4
+    "let g:deoplete#max_list = 10
+"Plugin 'LucHermitte/lh-vim-lib'
+Plugin 'LucHermitte/VimFold4C'
+
+
 UnBundle 'kana/vim-textobj-user'
 UnBundle 'gcmt/wildfire.vim'
 UnBundle 'kana/vim-textobj-indent'
 UnBundle 'mattn/webapi-vim'
 UnBundle 'tacahiroy/ctrlp-funky'
+
+

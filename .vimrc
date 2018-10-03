@@ -1104,6 +1104,20 @@
             let g:airline_symbols.linenr = '☰'
             let g:airline_symbols.maxlinenr = ''
 
+
+            "powerline-extra-symbols DroidSansMono Nerd Font Mono 12
+            "font downloaded from github.com/ryanoasis/nerd-fonts
+            let g:airline_left_sep = "\ue0c6"
+            let g:airline_left_alt_sep = ''
+            let g:airline_right_sep = ''
+            let g:airline_right_alt_sep = ''
+
+    if has('gui_running')
+            let g:airline_section_c = '%{strftime("%m/%d %I:%M%p")} %t'
+    else
+            let g:airline_section_c = '%{strftime("%m/%d | %I:%M%p")} %t'
+    endif
+
             "let g:airline_extensions = ['bufferline','tabline','tagbar']
             let g:airline_extensions = ['bufferline','tabline']
             let g:airline_detect_spell=0
@@ -1114,7 +1128,12 @@
             let g:airline#extensions#tabline#enabled = 1
             let g:airline_inactive_collapse=0
             "let g:airline_section_c = '%t'
-            let g:airline_section_c = '%{strftime("%m/%d|%I:%M%p")} %t'
+            "let g:airline_section_c = '%{strftime("%m/%d|%I:%M%p")} %t'
+
+            let g:airline#extensions#tabline#left_sep = ''
+            let g:airline#extensions#tabline#right_sep = ''
+
+
             let g:airline#extensions#tabline#buffer_idx_mode = 1
             nmap <leader>1 <Plug>AirlineSelectTab1
             nmap <leader>2 <Plug>AirlineSelectTab2
@@ -1141,7 +1160,7 @@
         set lines=40                " 40 lines of text instead of 24
         if !exists("g:spf13_no_big_font")
             if LINUX() && has("gui_running")
-                set guifont=Andale\ Mono\ Regular\ 12,Menlo\ Regular\ 11,Consolas\ Regular\ 12,Courier\ New\ Regular\ 14
+                set guifont=DroidSansMono\ Nerd\ Font\ Mono\ 12,Andale\ Mono\ Regular\ 12,Menlo\ Regular\ 11,Consolas\ Regular\ 12,Courier\ New\ Regular\ 14
             elseif OSX() && has("gui_running")
                 set guifont=Andale\ Mono\ Regular:h12,Menlo\ Regular:h11,Consolas\ Regular:h12,Courier\ New\ Regular:h14
             elseif WINDOWS() && has("gui_running")
@@ -1316,4 +1335,4 @@
         endif
     endif
 " }
-
+"symbols :                       

@@ -113,5 +113,6 @@
 "let g:spf13_bundle_groups=['general','programming', 'misc',]
 "let g:spf13_bundle_groups=['general','neocomplete','programming',]
 "let g:spf13_bundle_groups=['general','youcompleteme','programming',]
-let g:spf13_bundle_groups=['general','programming','youcompleteme','deoplete',]
-let g:spf13_bundle_groups=['general','programming','deoplete',]
+"let g:spf13_bundle_groups=['general','programming','youcompleteme','deoplete',]
+let g:spf13_bundle_groups=['general','programming','neocompletecache',]
+"let g:spf13_bundle_groups=['general','programming','deoplete',]

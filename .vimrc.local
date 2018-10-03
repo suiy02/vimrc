@@ -79,3 +79,6 @@ inoremap <c-v> <c-o>"+p
 set nocursorline
 set nospell
 set nonumber
+
+inoremap <c-;> <c-o>:sth
+

@@ -358,7 +358,7 @@ Plugin 'MattesGroeger/vim-bookmarks'
 "fastunite
 Plugin 'Shougo/vimproc.vim'
 Plugin 'Shougo/unite.vim'
-Plugin 'rstacruz/vim-fastunite'
+"Plugin 'rstacruz/vim-fastunite'
 
 Plugin 'Shougo/neomru.vim'
 Plugin 'Shougo/unite-outline'
@@ -389,17 +389,18 @@ Plugin 'junegunn/fzf.vim'
 
 Plugin 'drmikehenry/vim-fontsize'
 
-Plugin 'yuttie/comfortable-motion.vim'
-    let g:comfortable_motion_no_default_key_mappings = 1
-    let g:comfortable_motion_interval = 16
-    let g:comfortable_motion_air_drag = 5
-    let g:comfortable_motion_friction = 10
-    set lazyredraw
-    noremap <silent> <ScrollWheelDown> :call comfortable_motion#flick(40)<CR>
-    noremap <silent> <ScrollWheelUp>   :call comfortable_motion#flick(-40)<CR>
-    nnoremap <silent> <PageUp> :call comfortable_motion#flick(100)<CR>
-    nnoremap <silent> <PageDown> :call comfortable_motion#flick(-100)<CR>
-    nnoremap <silent> <C-f> :call comfortable_motion#flick(200)<CR>
-    nnoremap <silent> <C-b> :call comfortable_motion#flick(-200)<CR>
+"Plugin 'yuttie/comfortable-motion.vim'
+    "let g:comfortable_motion_no_default_key_mappings = 1
+    "let g:comfortable_motion_interval = 16
+    "let g:comfortable_motion_air_drag = 5
+    "let g:comfortable_motion_friction = 10
+    "set lazyredraw
+    "noremap <silent> <ScrollWheelDown> :call comfortable_motion#flick(40)<CR>
+    "noremap <silent> <ScrollWheelUp>   :call comfortable_motion#flick(-40)<CR>
+    "nnoremap <silent> <PageUp> :call comfortable_motion#flick(100)<CR>
+    "nnoremap <silent> <PageDown> :call comfortable_motion#flick(-100)<CR>
+    "nnoremap <silent> <C-f> :call comfortable_motion#flick(200)<CR>
+    "nnoremap <silent> <C-b> :call comfortable_motion#flick(-200)<CR>
 
 Plugin 'mhinz/vim-startify'
+Plugin 'ryanoasis/vim-webdevicons'
